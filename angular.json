@@ -28,7 +28,7 @@
             ],
             "styles": [
               "src/styles.css",
-              "bootswatch/dist/solar/bootstrap.min.css"
+              "bootswatch/dist/minty/bootstrap.min.css"
             ],
             "scripts": []
           },
@@ -96,7 +96,7 @@
             ],
             "styles": [
               "src/styles.css",
-              "bootswatch/dist/solar/bootstrap.min.css"
+              "bootswatch/dist/minty/bootstrap.min.css"
             ],
             "scripts": []
           }
