@@ -5,16 +5,23 @@ import { AuthModule } from '@auth0/auth0-angular';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { HomeComponent } from './components/home/home.component';
+import { BottomNavbarComponent } from './components/bottom-navbar/bottom-navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
+    NavbarComponent,
+    HomeComponent,
+    BottomNavbarComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot([
-      
+      {
+        path: '**',
+        component: HomeComponent
+      }
     ]),
     AuthModule.forRoot({
       domain: 'dev-x9fipz-q.us.auth0.com',
