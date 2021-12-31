@@ -1,3 +1,19 @@
 .authBtn {
     margin-left: 0.5rem;
 }
+
+.navbar-text {
+    color: white;
+}
+.navbar-text:focus {
+    color: white;
+    filter: brightness(100%);
+}
+
+.hover:hover {
+    cursor: pointer;
+    filter: brightness(90%);
+}
+a:not([href]):not([tabindex]){
+    color: white;
+}
