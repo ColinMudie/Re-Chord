@@ -1,0 +1,32 @@
+.key {
+    display: inline-block;
+}
+
+.white {
+    background: #f9fafb;
+    width: 3rem;
+    height: 15rem;
+    border: 1px solid #343a40;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.black {
+    background: #343a40;
+    width: 2.8rem;
+    height: 9rem;
+    margin-left: 0.12rem;
+    margin-right: 0.12rem;
+    border: 1px solid #343a40;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.spacer {
+    display: inline-block;
+    width: 2.8rem;
+    height: 9rem;
+    margin-left: 0.1rem;
+    margin-right: 0.1rem;
+    border: 1px solid rgba(0, 0, 0, 0);
+}

@@ -8,6 +8,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { BottomNavbarComponent } from './components/bottom-navbar/bottom-navbar.component';
 import { KeyboardComponent } from './components/keyboard/keyboard.component';
+import { KeyComponent } from './components/key/key.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { KeyboardComponent } from './components/keyboard/keyboard.component';
     NavbarComponent,
     HomeComponent,
     BottomNavbarComponent,
-    KeyboardComponent
+    KeyboardComponent,
+    KeyComponent
   ],
   imports: [
     BrowserModule,
