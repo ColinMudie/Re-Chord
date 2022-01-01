@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { BottomNavbarComponent } from './components/bottom-navbar/bottom-navbar.component';
-import { KeyboardComponent } from './components/keyboard/keyboard.component';
+import { ContentComponent } from './components/content/content.component';
 
 @NgModule({
   declarations: [
@@ -15,14 +15,14 @@ import { KeyboardComponent } from './components/keyboard/keyboard.component';
     NavbarComponent,
     HomeComponent,
     BottomNavbarComponent,
-    KeyboardComponent
+    ContentComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot([
       {
-        path: 'keyboard',
-        component: KeyboardComponent
+        path: 'play',
+        component: ContentComponent
       },
       {
         path: '**',

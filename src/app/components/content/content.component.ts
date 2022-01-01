@@ -4,11 +4,11 @@ import { Observable } from 'rxjs';
 import { WebAudioAPIService } from 'src/app/services/web-audio-api.service';
 import MIDIMessageEvent = WebMidi.MIDIMessageEvent;
 @Component({
-  selector: 'app-keyboard',
-  templateUrl: './keyboard.component.html',
-  styleUrls: ['./keyboard.component.css']
+  selector: 'app-content',
+  templateUrl: './content.component.html',
+  styleUrls: ['./content.component.css']
 })
-export class KeyboardComponent implements OnInit
+export class ContentComponent implements OnInit
 {
 
   constructor(@Inject(MIDI_MESSAGES) messages$: Observable<MIDIMessageEvent>, webAudioAPI: WebAudioAPIService)
