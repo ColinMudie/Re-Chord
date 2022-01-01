@@ -80,12 +80,17 @@ export class WebAudioAPIService
 
     public noteOn(note: number, velocity: number)
     { 
-      
+      console.log(note);
       if (this.voices[note] == null)
       {
-        this.voices[note] = new Voice(note, velocity, this.audioCtx, this.volumeNode)
+        this.voices[note] = new Voice(note, velocity, this.audioCtx, this.volumeNode);
         this.currentVoices.push(note);
-        this.currentVoices.sort(function (a, b) { return a - b })
+        this.currentVoices.sort(function (a, b) { return a - b });
+        let currentNote = document.getElementById(`${note}`);
+        if (currentNote)
+        {
+          currentNote.classList.add('pressed');
+        }
       }
     }
   
@@ -97,6 +102,11 @@ export class WebAudioAPIService
         this.voices[note] = null;
         let noteIndex = this.currentVoices.findIndex(element => element === note);
         this.currentVoices.splice(noteIndex, 1);
+        let currentNote = document.getElementById(`${note}`);
+        if (currentNote)
+        {
+          currentNote.classList.remove('pressed');
+        }
       }
     }
 

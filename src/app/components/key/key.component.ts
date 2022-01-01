@@ -9,6 +9,9 @@ export class KeyComponent implements OnInit {
   @Input()
   keyType!: string;
 
+  @Input()
+  keyId: string = '0';
+
 
   constructor() { }
 
