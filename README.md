@@ -1,10 +1,10 @@
-# Re-Chord
+# Re:Chord
 
 ## Description
 
-Re-Chord is a Web App designed to help a new piano user learn chords. 
-Re-Chord will take the signal from an incoming midi keyboard and convert it to sound.
-Re-Chord allow a user to select a chord type and root ex: "C min9", the user will then play notes on their midi keyboard and be given a response if they are correct or not.
+Re:Chord is a Web App designed to help a new piano user learn chords. 
+Re:Chord will take the signal from an incoming midi keyboard and convert it to sound.
+Re:Chord allow a user to select a chord type and root ex: "C min9", the user will then play notes on their midi keyboard and be given a response if they are correct or not.
 A user can go into training mode and select multiple different chords which will be practiced in a random order
 
 ## User Story
@@ -26,7 +26,7 @@ I want an app that allows me to easily learn new chords and practice already lea
 
 ## Getting Started
 
-*note: Re-Chord Will Require A Working Midi Keyboard To Function.*
+*note: Re:Chord Will Require A Working Midi Keyboard To Function.*
 
 - Wiew the app here:   
  https://re-chord.azurewebsites.net/
@@ -43,7 +43,7 @@ I want an app that allows me to easily learn new chords and practice already lea
 
   - Clone repo from repository:
 
-        git clone https://github.com/ColinMudie/MIDI.git
+        git clone https://github.com/ColinMudie/Re-Chord.git
  
   - Once you have cloned or downloaded the repo you will need to install the necessary packages.    
     Enter the following command in your terminal:
@@ -58,7 +58,7 @@ I want an app that allows me to easily learn new chords and practice already lea
 
 
 ## Links
-[Github Repository](https://github.com/ColinMudie/MIDI)  
+[Github Repository](https://github.com/ColinMudie/Re-Chord)  
 [Live Link](https://re-chord.azurewebsites.net/)
 
 ## License
