@@ -9,9 +9,9 @@ import { WebAudioAPIService } from 'src/app/services/web-audio-api.service';
 export class KeyboardComponent implements OnInit
 {
 
-  constructor(webAudioAPI: WebAudioAPIService)
+  constructor()
   {
-    webAudioAPI.initAudio();
+    
   }
 
   ngOnInit(): void

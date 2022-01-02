@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Chord } from '../models/chord';
 import { Minor9 } from '../models/chords/minor9';
 import { Voice } from '../models/voice';
@@ -17,23 +18,18 @@ export class WebAudioAPIService
 
   volumeNode: any;
 
+  hasMidi: boolean = false;
+
+
   constructor(private midiConverter: MidiNoteConverterService) 
   {
   }
 
-  public initAudio()
-  {
-    this.audioCtx = new AudioContext({
-      latencyHint: "interactive",
-      sampleRate: 48100,
-    });
+  public initAudio = new Observable((observer) =>
+  {    
 
-    this.volumeNode = this.audioCtx.createGain();
-    this.volumeNode.gain.value = 0.1;
-    this.volumeNode.connect(this.audioCtx.destination);
-    console.log(`initialize audio`);
-    console.log(this.audioCtx);
-    
+    //////// Setup MIDI ////////
+
     const getMIDIMessage = (midiMessage: any): void =>
     {
       var command = midiMessage.data[0];
@@ -64,20 +60,59 @@ export class WebAudioAPIService
 
     const onMIDISuccees = (midiAccess: any): void =>
     {
-      for (var input of midiAccess.inputs.values())
-        input.onmidimessage =  getMIDIMessage;
+      
+      if (midiAccess.inputs.size < 1) // check if midi is accessible but no inputs found.
+      {
+        console.log('failed');
+        this.hasMidi = false;
+      } 
+      else
+      {
+        this.hasMidi = true;
+        for (var input of midiAccess.inputs.values())
+        {
+          input.onmidimessage = getMIDIMessage;
+        }
+      }
+
+      midiAccess.onstatechange = function (e:any) // display if a midi device is connected or disconnected
+      {
+        console.log(e.port.name, e.port.manufacturer, e.port.state);
+        if (e.port.state === 'connected')
+        {
+          this.hasMidi = true;
+        }
+        else
+        {
+          this.hasMidi = false;
+        }
+      }
+      observer.next(this.hasMidi);
     }
 
-    function onMIDIFailure(): void
+    const onMIDIFailure = (): void =>
     {
+      this.hasMidi = false;
       console.log('Could not access your MIDI devices');
     }
 
-    
     navigator.requestMIDIAccess()
       .then(onMIDISuccees, onMIDIFailure);
 
-  }
+    if (this.hasMidi)
+    {
+      this.audioCtx = new AudioContext({
+        latencyHint: "interactive",
+        sampleRate: 48100,
+      });
+
+      this.volumeNode = this.audioCtx.createGain();
+      this.volumeNode.gain.value = 0.1;
+      this.volumeNode.connect(this.audioCtx.destination);
+      console.log(`initialize audio`);
+      console.log(this.audioCtx);
+    }
+  })
 
     
 

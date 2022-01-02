@@ -19,6 +19,17 @@ export class HomeComponent implements OnInit {
   start()
   {
     this.started = true;
-    this.router.navigateByUrl('/keyboard');
+    this.webAudioAPI.initAudio.subscribe(
+      (response) => {
+        if (response)
+        {
+          this.router.navigateByUrl('/keyboard');
+        }
+        else
+        {
+          // display something to user to plug in midi device and try again.
+        }
+    })
+    
   }
 }
