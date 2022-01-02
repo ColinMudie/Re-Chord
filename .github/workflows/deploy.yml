@@ -9,7 +9,7 @@ on:
 env:
   AZURE_WEBAPP_NAME: Re-Chord
   AZURE_WEBAPP_PACKAGE_PATH: './dist/Re-Chord'
-  NODE_VERSION: '12.x'
+  NODE_VERSION: '14.x'
   
 jobs:
   build-and-deploy:
