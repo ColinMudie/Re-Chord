@@ -1,6 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MIDI_SUPPORT } from '@ng-web-apis/midi';
 import { WebAudioAPIService } from 'src/app/services/web-audio-api.service';
 
 @Component({
@@ -11,7 +10,7 @@ import { WebAudioAPIService } from 'src/app/services/web-audio-api.service';
 export class HomeComponent implements OnInit {
   started = false;
 
-  constructor(private router: Router, @Inject(MIDI_SUPPORT) readonly supported: boolean, private webAudioAPI: WebAudioAPIService) { }
+  constructor(private router: Router, private webAudioAPI: WebAudioAPIService) { }
 
   ngOnInit(): void 
   {

@@ -74,7 +74,6 @@ export class WebAudioAPIService
     }
 
     
-
     navigator.requestMIDIAccess()
       .then(onMIDISuccees, onMIDIFailure);
 
