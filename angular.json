@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/MIDI",
+            "outputPath": "dist/Re-Chord",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -69,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "MIDI:build:production"
+              "browserTarget": "Re-Chord:build:production"
             },
             "development": {
-              "browserTarget": "MIDI:build:development"
+              "browserTarget": "Re-Chord:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -80,7 +80,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "MIDI:build"
+            "browserTarget": "Re-Chord:build"
           }
         },
         "test": {
@@ -104,5 +104,5 @@
       }
     }
   },
-  "defaultProject": "MIDI"
+  "defaultProject": "Re-Chord"
 }
