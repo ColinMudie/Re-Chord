@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
+import { Chord } from '../models/chord';
+import { Minor9 } from '../models/chords/minor9';
 import { Voice } from '../models/voice';
+import { MidiNoteConverterService } from './midi-note-converter.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +13,11 @@ export class WebAudioAPIService
   currentVoices: any[] = [];
   audioCtx!: AudioContext;
   
+  currentChord: Chord = new Minor9().C;
 
   volumeNode: any;
 
-  constructor() 
+  constructor(private midiConverter: MidiNoteConverterService) 
   {
   }
 
@@ -80,16 +84,20 @@ export class WebAudioAPIService
 
     public noteOn(note: number, velocity: number)
     { 
-      console.log(note);
       if (this.voices[note] == null)
       {
         this.voices[note] = new Voice(note, velocity, this.audioCtx, this.volumeNode);
         this.currentVoices.push(note);
         this.currentVoices.sort(function (a, b) { return a - b });
         let currentNote = document.getElementById(`${note}`);
-        if (currentNote)
+        let convertedNote = this.midiConverter.midiNoteConverter(note);
+        if (currentNote && this.currentChord.notes.includes(convertedNote))
         {
-          currentNote.classList.add('pressed');
+          currentNote.classList.add('correct');
+        }
+        else if (currentNote)
+        {
+          currentNote.classList.add('incorrect');
         }
       }
     }
@@ -105,7 +113,8 @@ export class WebAudioAPIService
         let currentNote = document.getElementById(`${note}`);
         if (currentNote)
         {
-          currentNote.classList.remove('pressed');
+          currentNote.classList.remove('correct');
+          currentNote.classList.remove('incorrect');
         }
       }
     }
