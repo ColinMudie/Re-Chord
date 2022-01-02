@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Re-chord": {
+    "Re-Chord": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {

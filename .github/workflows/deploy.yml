@@ -2,9 +2,9 @@ name: Build and Deploy to Azure Web App - Re-Chord
 
 on:
   push:
-#     branches: [ main ]
-#   pull_request:
-#     branches: [ main ]
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 env:
   AZURE_WEBAPP_NAME: Re-Chord
