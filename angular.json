@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "MIDI": {
+    "Re-chord": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
