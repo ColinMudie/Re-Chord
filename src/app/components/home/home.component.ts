@@ -10,7 +10,7 @@ import { WebAudioAPIService } from 'src/app/services/web-audio-api.service';
 export class HomeComponent implements OnInit {
   started = false;
 
-  constructor(private router: Router, private webAudioAPI: WebAudioAPIService) { }
+  constructor(private router: Router, public webAudioAPI: WebAudioAPIService) { }
 
   ngOnInit(): void 
   {
@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   start()
   {
     this.started = true;
-    this.webAudioAPI.initAudio.subscribe(
+    this.webAudioAPI.initMidi.subscribe(
       (response) => {
         if (response)
         {

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { Chord } from '../models/chord';
 import { Minor9 } from '../models/chords/minor9';
 import { Voice } from '../models/voice';
@@ -13,23 +13,20 @@ export class WebAudioAPIService
   voices: any[] = [];
   currentVoices: any[] = [];
   audioCtx!: AudioContext;
-  
+
   currentChord: Chord = new Minor9().C;
 
   volumeNode: any;
 
-  hasMidi: boolean = false;
-
+  hasMidi: boolean = true;
 
   constructor(private midiConverter: MidiNoteConverterService) 
   {
   }
 
-  public initAudio = new Observable((observer) =>
-  {    
-
+  public initMidi = new Observable((observer) =>
+  {
     //////// Setup MIDI ////////
-
     const getMIDIMessage = (midiMessage: any): void =>
     {
       var command = midiMessage.data[0];
@@ -60,12 +57,12 @@ export class WebAudioAPIService
 
     const onMIDISuccees = (midiAccess: any): void =>
     {
-      
       if (midiAccess.inputs.size < 1) // check if midi is accessible but no inputs found.
       {
         console.log('failed');
         this.hasMidi = false;
-      } 
+        // this._isConnectedSubject.next(false);
+      }
       else
       {
         this.hasMidi = true;
@@ -75,7 +72,7 @@ export class WebAudioAPIService
         }
       }
 
-      midiAccess.onstatechange = function (e:any) // display if a midi device is connected or disconnected
+      midiAccess.onstatechange = function (e: any) // display if a midi device is connected or disconnected
       {
         console.log(e.port.name, e.port.manufacturer, e.port.state);
         if (e.port.state === 'connected')
@@ -98,61 +95,64 @@ export class WebAudioAPIService
 
     navigator.requestMIDIAccess()
       .then(onMIDISuccees, onMIDIFailure);
-
-    if (this.hasMidi)
-    {
-      this.audioCtx = new AudioContext({
-        latencyHint: "interactive",
-        sampleRate: 48100,
-      });
-
-      this.volumeNode = this.audioCtx.createGain();
-      this.volumeNode.gain.value = 0.1;
-      this.volumeNode.connect(this.audioCtx.destination);
-      console.log(`initialize audio`);
-      console.log(this.audioCtx);
-    }
   })
 
-    
+  public initAudio()
+  {
+    this.audioCtx = new AudioContext({
+      latencyHint: "interactive",
+      sampleRate: 48100,
+    });
 
-    public noteOn(note: number, velocity: number)
-    { 
-      if (this.voices[note] == null)
-      {
-        this.voices[note] = new Voice(note, velocity, this.audioCtx, this.volumeNode);
-        this.currentVoices.push(note);
-        this.currentVoices.sort(function (a, b) { return a - b });
-        let currentNote = document.getElementById(`${note}`);
-        let convertedNote = this.midiConverter.midiNoteConverter(note);
-        if (currentNote && this.currentChord.notes.includes(convertedNote))
-        {
-          currentNote.classList.add('correct');
-        }
-        else if (currentNote)
-        {
-          currentNote.classList.add('incorrect');
-        }
-      }
-    }
-  
-    public noteOff(note: number)
+    this.volumeNode = this.audioCtx.createGain();
+    this.volumeNode.gain.value = 0.1;
+    this.volumeNode.connect(this.audioCtx.destination);
+    console.log(`initialize audio`);
+    console.log(this.audioCtx);
+  }
+
+  public closeAudio()
+  {
+    this.audioCtx.close();
+  }
+
+  public noteOn(note: number, velocity: number)
+  {
+    if (this.voices[note] == null)
     {
-      if (this.voices[note] !== null)
+      this.voices[note] = new Voice(note, velocity, this.audioCtx, this.volumeNode);
+      this.currentVoices.push(note);
+      this.currentVoices.sort(function (a, b) { return a - b });
+      let currentNote = document.getElementById(`${note}`);
+      let convertedNote = this.midiConverter.midiNoteConverter(note);
+      if (currentNote && this.currentChord.notes.includes(convertedNote))
       {
-        this.voices[note].noteOff(this.audioCtx);
-        this.voices[note] = null;
-        let noteIndex = this.currentVoices.findIndex(element => element === note);
-        this.currentVoices.splice(noteIndex, 1);
-        let currentNote = document.getElementById(`${note}`);
-        if (currentNote)
-        {
-          currentNote.classList.remove('correct');
-          currentNote.classList.remove('incorrect');
-        }
+        currentNote.classList.add('correct');
+      }
+      else if (currentNote)
+      {
+        currentNote.classList.add('incorrect');
       }
     }
+  }
 
-  
-  
+  public noteOff(note: number)
+  {
+    if (this.voices[note] !== null)
+    {
+      this.voices[note].noteOff(this.audioCtx);
+      this.voices[note] = null;
+      let noteIndex = this.currentVoices.findIndex(element => element === note);
+      this.currentVoices.splice(noteIndex, 1);
+      let currentNote = document.getElementById(`${note}`);
+      if (currentNote)
+      {
+        currentNote.classList.remove('correct');
+        currentNote.classList.remove('incorrect');
+      }
+    }
+  }
+
+
+
 }

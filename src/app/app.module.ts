@@ -9,6 +9,8 @@ import { HomeComponent } from './components/home/home.component';
 import { BottomNavbarComponent } from './components/bottom-navbar/bottom-navbar.component';
 import { KeyboardComponent } from './components/keyboard/keyboard.component';
 import { KeyComponent } from './components/key/key.component';
+import { MidiErrorComponent } from './components/midi-error/midi-error.component';
+import { WebAudioAPIService } from './services/web-audio-api.service';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,8 @@ import { KeyComponent } from './components/key/key.component';
     HomeComponent,
     BottomNavbarComponent,
     KeyboardComponent,
-    KeyComponent
+    KeyComponent,
+    MidiErrorComponent
   ],
   imports: [
     BrowserModule,

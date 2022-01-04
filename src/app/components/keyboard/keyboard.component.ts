@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { WebAudioAPIService } from 'src/app/services/web-audio-api.service';
 
 @Component({
@@ -6,16 +6,22 @@ import { WebAudioAPIService } from 'src/app/services/web-audio-api.service';
   templateUrl: './keyboard.component.html',
   styleUrls: ['./keyboard.component.css']
 })
-export class KeyboardComponent implements OnInit
+export class KeyboardComponent implements OnInit, OnDestroy
 {
 
-  constructor()
+  constructor(public webAudioAPI: WebAudioAPIService)
   {
-    
+    this.webAudioAPI.initAudio();
+  }
+  ngOnDestroy(): void
+  {
+    this.webAudioAPI.closeAudio();
   }
 
   ngOnInit(): void
   {
+    
+    
   }
 
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { WebAudioAPIService } from './services/web-audio-api.service';
 
 @Component({
   selector: 'app-root',
@@ -7,10 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Re-Chord';
-
   constructor()
   {
-    
+  
   }
 
 }

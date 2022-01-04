@@ -1,18 +1,18 @@
 .black-key-row {
     position: absolute;
     z-index: 2;
-    margin-left: 1rem;
-    height: 15rem;
+    margin-left: 1.5vw;
+    height: 15vw;
     /* top: 20rem; */
 }
 .white-key-row {
     position: absolute;
-    height: 15rem;
+    height: 15vw;
     /* top: 20rem; */
 }
 
 .keyboard {
-    margin-left: 7.5rem;
+    margin-left: 7vw;
     margin-right: auto;
 }
 
