@@ -1,0 +1,22 @@
+.black-key-row {
+  position: absolute;
+  z-index: 2;
+  margin-left: 1.5vw;
+  height: 15vw;
+  /* top: 20rem; */
+}
+
+.white-key-row {
+  position: absolute;
+  height: 15vw;
+  /* top: 20rem; */
+}
+
+.keyboard {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.center {
+  text-align: center;
+}

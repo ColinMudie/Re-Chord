@@ -45,3 +45,9 @@ testem.log
 .DS_Store
 Thumbs.db
 .vscode
+
+.vs
+
+bin
+obj
+appsettings.json

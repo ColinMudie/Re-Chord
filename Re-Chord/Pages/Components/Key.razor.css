@@ -1,0 +1,40 @@
+.key {
+  display: inline-block;
+}
+
+.white {
+  background: #f9fafb;
+  width: 3vw;
+  height: 15vw;
+  border: 1px solid #343a40;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.black {
+  background: #343a40;
+  width: 2.8vw;
+  height: 9vw;
+  margin-left: 0.1vw;
+  margin-right: 0.1vw;
+  border: 1px solid #343a40;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.spacer {
+  display: inline-block;
+  width: 2.8vw;
+  height: 9vw;
+  margin-left: 0.1vw;
+  margin-right: 0.1vw;
+  border: 1px solid rgba(0, 0, 0, 0);
+}
+
+.correct {
+  background: #78c2ad;
+}
+
+.incorrect {
+  background: #cf8083;
+}
