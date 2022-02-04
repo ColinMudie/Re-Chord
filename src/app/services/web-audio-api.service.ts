@@ -17,8 +17,9 @@ export class WebAudioAPIService
   currentChord: Chord = new Minor9().C;
 
   volumeNode: any;
-
-  hasMidi: boolean = true;
+  public hasMidi:boolean = true;
+  // private _hasMidiSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
+  // public hasMidiObs: Observable<boolean> = this._hasMidiSubject.asObservable();
 
   constructor(private midiConverter: MidiNoteConverterService) 
   {
@@ -57,15 +58,17 @@ export class WebAudioAPIService
 
     const onMIDISuccees = (midiAccess: any): void =>
     {
+      const web = new WebAudioAPIService(new MidiNoteConverterService)
       if (midiAccess.inputs.size < 1) // check if midi is accessible but no inputs found.
       {
         console.log('failed');
+        // web._hasMidiSubject.next(false);
         this.hasMidi = false;
-        // this._isConnectedSubject.next(false);
       }
       else
       {
-        this.hasMidi = true;
+        web.hasMidi = true;
+        // this._hasMidiSubject.next(true);
         for (var input of midiAccess.inputs.values())
         {
           input.onmidimessage = getMIDIMessage;
@@ -78,10 +81,14 @@ export class WebAudioAPIService
         if (e.port.state === 'connected')
         {
           this.hasMidi = true;
+          console.log(this.hasMidi);
+          // web._hasMidiSubject.next(true);
         }
         else
         {
           this.hasMidi = false;
+          console.log(this.hasMidi);
+          // web._hasMidiSubject.next(false);
         }
       }
       observer.next(this.hasMidi);
@@ -114,6 +121,7 @@ export class WebAudioAPIService
   public closeAudio()
   {
     this.audioCtx.close();
+    console.log("closed audio context");
   }
 
   public noteOn(note: number, velocity: number)

@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { WebAudioAPIService } from 'src/app/services/web-audio-api.service';
 
@@ -7,7 +7,7 @@ import { WebAudioAPIService } from 'src/app/services/web-audio-api.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit{
   started = false;
 
   constructor(private router: Router, public webAudioAPI: WebAudioAPIService) { }
@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
         }
         else
         {
-          // display something to user to plug in midi device and try again.
+          
         }
     })
     
